@@ -12,118 +12,70 @@
       font-family: 'Cursive', sans-serif;
       margin: 0;
       padding: 0;
+      overflow: hidden;
     }
 
-    /* Heart animation */
-    .heart {
-      position: absolute;
-      top: 40%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      width: 80px;
-      height: 70px;
-      background: red;
-      transform: rotate(-45deg);
-      animation: beat 1s infinite;
-    }
-    .heart:before,
-    .heart:after {
-      content: "";
-      position: absolute;
-      width: 80px;
-      height: 70px;
-      background: red;
-      border-radius: 50%;
-    }
-    .heart:before {
-      top: -40px;
-      left: 0;
-    }
-    .heart:after {
-      left: 40px;
-      top: 0;
-    }
-    @keyframes beat {
-      0%, 100% { transform: rotate(-45deg) scale(1); }
-      50% { transform: rotate(-45deg) scale(1.2); }
-    }
-
-    /* Hidden content */
-    .content {
-      display: none;
-      margin-top: 80px;
-      padding: 0 10px;
-    }
     h1 {
       font-size: 2em;
+      margin-top: 20px;
       color: #ffb6c1;
       text-shadow: 0 0 15px #ff69b4;
     }
-    img {
-      margin-top: 20px;
-      max-width: 95%;
-      height: auto;
-      border: 3px solid #ff69b4;
-      border-radius: 10px;
-      box-shadow: 0 0 20px #ff69b4;
+
+    /* Tulip grows */
+    .tulip {
+      width: 200px;
+      margin: 50px auto;
+      animation: grow 5s ease-out forwards;
+      transform: scale(0);
     }
-    p {
-      margin-top: 15px;
-      font-size: 1.2em;
-      color: #ffe4e1;
+    @keyframes grow {
+      from { transform: scale(0); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    /* Start button */
-    .start-btn {
+    /* Butterfly animation */
+    .butterfly {
       position: absolute;
-      top: 70%;
-      left: 50%;
-      transform: translate(-50%, -50%);
-      background: #ff69b4;
-      color: white;
-      border: none;
-      padding: 15px 30px;
-      font-size: 1.2em;
-      border-radius: 10px;
-      cursor: pointer;
-      box-shadow: 0 0 15px #ff69b4;
+      width: 50px;
+      animation: fly 10s infinite linear;
+    }
+    .butterfly img {
+      width: 100%;
+    }
+    @keyframes fly {
+      0% { transform: translate(0,0) rotate(0deg); }
+      25% { transform: translate(100px,-50px) rotate(20deg); }
+      50% { transform: translate(200px,0) rotate(-20deg); }
+      75% { transform: translate(100px,50px) rotate(10deg); }
+      100% { transform: translate(0,0) rotate(0deg); }
+    }
+
+    /* Background music hidden */
+    audio {
+      display: none;
     }
   </style>
 </head>
 <body>
-  <!-- Pumping Heart -->
-  <div class="heart"></div>
-  <button class="start-btn">Tap to Start 💖</button>
+  <h1>Happy Valentine's Day 💖</h1>
+  <p>Wishing you a day filled with joy, friendship, and love!</p>
+  </div>
 
-  <!-- Valentine Content -->
-  <div class="content">
-    <h1>Happy Valentine's Day 💖</h1>
-    <img src="valentine.png" alt="Glowing Tulip with Butterflies">
-    <p>Wishing you a day filled with joy, friendship, and love!</p>
+  <!-- Tulip -->
+  <img class="tulip" src="https://copilot.microsoft.com/th/id/BCO.6813d412-1ede-4758-b7fd-df42a3b0bea4.png" alt="Glowing Tulip with Butterflies">
+
+  <!-- Butterflies -->
+  <div class="butterfly" style="top:20%; left:10%;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Butterfly_icon.svg/1024px-Butterfly_icon.svg.png" alt="Butterfly">
+  </div>
+  <div class="butterfly" style="top:40%; left:70%; animation-delay:3s;">
+    <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Butterfly_icon.svg/1024px-Butterfly_icon.svg.png" alt="Butterfly">
   </div>
 
   <!-- Background Music -->
-  <audio id="bg-music" loop>
+  <audio id="bg-music" autoplay loop>
     <source src="sigmamusicart-piano-background-music-462076.mp3" type="audio/mpeg">
-    Your browser does not support the audio element.
   </audio>
-
-  <script>
-    document.querySelector('.start-btn').addEventListener('click', () => {
-      // Play music
-      document.getElementById('bg-music').play();
-
-      // Hide button
-      document.querySelector('.start-btn').style.display = 'none';
-
-      // Show tulip after 5 seconds
-      setTimeout(() => {
-        document.querySelector('.heart').style.display = 'none';
-        document.querySelector('.content').style.display = 'block';
-      }, 5000);
-    });
-  </script>
 </body>
 </html>
-
-
