@@ -9,9 +9,50 @@
       color: pink;
       text-align: center;
       font-family: 'Cursive', sans-serif;
+      margin: 0;
+      padding: 0;
+    }
+
+    /* Heart animation */
+    .heart {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 100px;
+      height: 90px;
+      background: red;
+      transform: rotate(-45deg);
+      animation: beat 1s infinite;
+    }
+    .heart:before,
+    .heart:after {
+      content: "";
+      position: absolute;
+      width: 100px;
+      height: 90px;
+      background: red;
+      border-radius: 50%;
+    }
+    .heart:before {
+      top: -50px;
+      left: 0;
+    }
+    .heart:after {
+      left: 50px;
+      top: 0;
+    }
+    @keyframes beat {
+      0%, 100% { transform: rotate(-45deg) scale(1); }
+      50% { transform: rotate(-45deg) scale(1.2); }
+    }
+
+    /* Hidden content */
+    .content {
+      display: none;
+      margin-top: 100px;
     }
     h1 {
-      margin-top: 30px;
       font-size: 3em;
       color: #ffb6c1;
       text-shadow: 0 0 15px #ff69b4;
@@ -31,8 +72,22 @@
   </style>
 </head>
 <body>
-  <h1>Happy Valentine's Day 💖</h1>
-  <img src="..image//valentine.png" alt="Glowing Tulip with Butterflies">
-  <p>Wishing all my classmates a day filled with joy, friendship, and love!</p>
+  <!-- Pumping Heart -->
+  <div class="heart"></div>
+
+  <!-- Valentine Content -->
+  <div class="content">
+    <h1>Happy Valentine's Day 💖</h1>
+    <img src="valentine.png" alt="Glowing Tulip with Butterflies">
+    <p>Wishing all my classmates a day filled with joy, friendship, and love!</p>
+  </div>
+
+  <script>
+    // Show tulip after 5 seconds
+    setTimeout(() => {
+      document.querySelector('.heart').style.display = 'none';
+      document.querySelector('.content').style.display = 'block';
+    }, 5000);
+  </script>
 </body>
 </html>
